@@ -1,9 +1,9 @@
-import { Contact } from "@/components/ReuseAbleComponents/Contact";
-import EmpowerSection from "@/components/ReuseAbleComponents/EmpowerSection";
-import { Footer } from "@/components/ReuseAbleComponents/Footer";
-import { Hero } from "@/components/ReuseAbleComponents/Hero";
-import { HowItWorks } from "@/components/ReuseAbleComponents/HowItWorkSection";
-import { ServicesSection } from "@/components/ReuseAbleComponents/ServiceSection";
+import { Contact } from "@/components/ReusableComponents/Contact";
+import EmpowerSection from "@/components/ReusableComponents/EmpowerSection";
+import { Footer } from "@/components/ReusableComponents/Footer";
+import { Hero } from "@/components/ReusableComponents/Hero";
+import { HowItWorks } from "@/components/ReusableComponents/HowItWorkSection";
+import { ServicesSection } from "@/components/ReusableComponents/ServiceSection";
 
 export default function HomePage() {
   return (
