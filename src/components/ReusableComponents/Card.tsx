@@ -1,6 +1,6 @@
 import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
 import { Company } from "@prisma/client";
-
+import { ChevronUpCircle } from 'lucide-react';
 export default function Card({ data }: { data: Company }) {
   return (
     <div className=" mx-auto my-10 max-w-4xl rounded-lg border bg-white p-4 shadow-md ">
@@ -19,6 +19,7 @@ export default function Card({ data }: { data: Company }) {
             </p>
             <p className="text-xs text-gray-500">{data.description}</p>
           </div>
+          <div className="ml-12 relative"> <ChevronUpCircle /> </div>
         </div>
       )}
     </div>

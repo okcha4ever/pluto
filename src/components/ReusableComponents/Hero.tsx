@@ -60,7 +60,7 @@ export function Hero() {
               ? router.push("/upvote")
               : signIn("google")
           }
-          className="hidden rounded-3xl bg-white text-black hover:bg-slate-300 md:block"
+          className="hidden rounded-3xl bg-black text-white px-8 hover:bg-slate-300 md:block"
         >
           Get Started
         </Button>

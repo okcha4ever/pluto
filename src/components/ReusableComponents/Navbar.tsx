@@ -1,7 +1,14 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
-import { MenuIcon, MicroscopeIcon } from "lucide-react";
+import { MenuIcon, MicroscopeIcon,Settings,CircleUserRound } from "lucide-react";
+
 import Image from "next/image";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 export function Navbar() {
   return (
@@ -34,7 +41,16 @@ export function Navbar() {
             />
             <AvatarFallback>U</AvatarFallback>
           </Avatar>
-          <MenuIcon className="h-6 w-6 text-white" />
+          <DropdownMenu>
+  <DropdownMenuTrigger> <MenuIcon className="h-6 w-6 text-white" /></DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuItem>Account   <CircleUserRound className="ml-2" /></DropdownMenuItem>
+    <DropdownMenuItem>Settings <Settings className="ml-2"/></DropdownMenuItem>
+ 
+  </DropdownMenuContent>
+</DropdownMenu>
+
+         
         </div>
       </div>
     </nav>
