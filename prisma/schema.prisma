@@ -14,16 +14,19 @@ datasource db {
     url = env("DATABASE_URL")
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+enum CompanyType {
+    STARTUP
+}
 
-    createdBy   User   @relation(fields: [createdById], references: [id])
-    createdById String
-
-    @@index([name])
+model Company {
+    id          String      @id @default(nanoid())
+    name        String
+    ceoId       String
+    category    String
+    upvotes     String[]
+    description String
+    ceo         User        @relation(fields: [ceoId], references: [id], onDelete: Cascade)
+    type        CompanyType
 }
 
 // Necessary for Next auth
@@ -61,7 +64,7 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
-    posts         Post[]
+    Company       Company[]
 }
 
 model VerificationToken {
