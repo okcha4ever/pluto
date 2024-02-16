@@ -14,9 +14,6 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-enum CompanyType {
-    STARTUP
-}
 
 model Company {
     id          String      @id @default(nanoid())
@@ -27,7 +24,7 @@ model Company {
     increment   Int?         @default(0)
     description String
     ceo         User        @relation(fields: [ceoId], references: [id], onDelete: Cascade)
-    type        CompanyType
+    type        String
 }
 
 // Necessary for Next auth

@@ -3,8 +3,8 @@ import { Navbar } from "@/components/ReusableComponents/Navbar";
 import { Button } from "@/components/ui/button";
 import Card from "../../components/ReusableComponents/Card";
 import { Footer } from "@/components/ReusableComponents/Footer";
-import { CompanyProps } from "@/types/CompanyProps";
 import useFetchCompany from "@/hooks/useFetchCompany";
+import { Company } from "@prisma/client";
 
 function Page() {
   const { data, isLoading, error } = useFetchCompany();
@@ -29,8 +29,8 @@ function Page() {
         </div>
       </div>
       {data &&
-        data.map((company: CompanyProps, i: number) => (
-          <Card key={i} data={company as CompanyProps} />
+        data.map((company, i: number) => (
+          <Card key={i} data={company as Company} />
         ))}
       <Footer />
     </div>
