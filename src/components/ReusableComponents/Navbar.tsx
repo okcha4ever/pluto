@@ -1,8 +1,14 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
-import { MenuIcon, MicroscopeIcon, UserIcon } from "lucide-react";
+import { CircleUserRound, MenuIcon, MicroscopeIcon, Settings, UserIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 export function Navbar() {
   const session = useSession();
@@ -43,7 +49,16 @@ export function Navbar() {
               <UserIcon /> {/* Use UserIcon from Lucide as fallback */}
             </AvatarFallback>
           </Avatar>
-          <MenuIcon className="h-6 w-6 text-white" />
+          <DropdownMenu>
+  <DropdownMenuTrigger> <MenuIcon className="h-6 w-6 text-white" /></DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuItem>Account   <CircleUserRound className="ml-2" /></DropdownMenuItem>
+    <DropdownMenuItem>Settings <Settings className="ml-2"/></DropdownMenuItem>
+ 
+  </DropdownMenuContent>
+</DropdownMenu>
+
+         
         </div>
       </div>
     </nav>
