@@ -1,6 +1,6 @@
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
-import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
-import { FlagIcon, MenuIcon, MicroscopeIcon } from "lucide-react";
+import { MenuIcon, MicroscopeIcon } from "lucide-react";
 import Image from "next/image";
 
 export function Navbar() {

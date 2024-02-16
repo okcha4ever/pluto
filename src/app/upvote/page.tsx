@@ -3,10 +3,10 @@ import { Navbar } from "@/components/ReusableComponents/Navbar";
 import { Button } from "@/components/ui/button";
 import Card from "../../components/ReusableComponents/Card";
 import { Footer } from "@/components/ReusableComponents/Footer";
-import { CompanyProps } from "@/types/Card";
+import { type CompanyProps } from "@/types/Card";
 import useFetchCompany from "@/hooks/useFetchCompany";
 
-function page() {
+function Page() {
   const { data, isLoading, error } = useFetchCompany();
 
   console.log(data, isLoading, error);
@@ -37,4 +37,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
