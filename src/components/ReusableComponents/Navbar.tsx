@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import {
@@ -49,7 +49,7 @@ export function Navbar() {
               <AvatarImage
                 alt="User avatar"
                 src={
-                  session.data?.user.image ||
+                  session.data?.user.image ??
                   "/placeholder.svg?height=32&width=32"
                 }
               />
@@ -60,15 +60,15 @@ export function Navbar() {
           </Link>
           <DropdownMenu>
             <DropdownMenuTrigger>
-              {" "}
               <MenuIcon className="h-6 w-6 text-white" />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem>
-                Account <CircleUserRound className="ml-2" />
+              <DropdownMenuItem className="flex justify-between">
+                <span>Account</span>
+                <CircleUserRound className="ml-2" color="gray" />
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                Settings <Settings className="ml-2" />
+              <DropdownMenuItem className="flex justify-between">
+                <span>Settings</span> <Settings className="ml-2" color="gray" />
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

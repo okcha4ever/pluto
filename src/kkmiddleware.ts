@@ -1,3 +1,5 @@
+// ! DEPRECATED: do not read any further
+
 import { getSession } from "next-auth/react";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
