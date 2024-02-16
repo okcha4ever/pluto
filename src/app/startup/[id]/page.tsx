@@ -5,6 +5,7 @@ import { Footer } from "@/components/ReusableComponents/Footer";
 import useFetchCompany from "@/hooks/companyHooks/useFetchCompany";
 import { InputForm } from "@/components/Input";
 
+
 function page({ params }: { params: { id: string } }) {
   const { data, error, isLoading } = useFetchCompany(params.id);
   console.log(data);
@@ -66,7 +67,7 @@ function page({ params }: { params: { id: string } }) {
             </div>
           </div>
         )}
-
+        
         <Footer />
       </div>
     </>
@@ -76,28 +77,4 @@ function page({ params }: { params: { id: string } }) {
 export default page;
 
 {
-  /* 
-   //comments
-   <div className="flex flex-col items-center space-y-3">
-                        <div className="inline-flex w-full items-center justify-start space-x-2">
-                          <Avatar>
-                            <AvatarImage
-                              alt="User avatar"
-                              src="/placeholder.svg?height=40&width=40"
-                            />
-                            <AvatarFallback>ST</AvatarFallback>
-                          </Avatar>
-                          <p className="font-semibold">Saint Tata</p>
-                        </div>
-                        <p className="text-sm">
-                          Their portfolio showcases a diverse range of projects,
-                          from sleek tech startup branding to socially conscious
-                          design initiatives. What sets Alex apart is their
-                          ability to infuse modern aesthetics with a touch of
-                          raw authenticity, drawing inspiration from urban
-                          landscapes and street art. With a keen eye for detail
-                          and a commitment to simplicity, Alex crafts visually
-                          compelling solutions that leave a lasting impression.
-                        </p>
-        </div>*/
 }

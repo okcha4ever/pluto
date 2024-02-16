@@ -12,7 +12,7 @@ export default function HomePage() {
       <EmpowerSection />
       <HowItWorks />
       <ServicesSection />
-      <Contact />
+      <Contact/>
       <Footer />
     </main>
   );
