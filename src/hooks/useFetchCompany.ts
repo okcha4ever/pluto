@@ -1,3 +1,4 @@
+import { CompanyProps } from "@/types/CompanyProps";
 import axios from "axios";
 import { useQuery } from "react-query";
 
@@ -12,7 +13,9 @@ const useFetchCompany = () => {
     queryFn: fetchCompany,
   });
 
-  return { data, error, isLoading };
+  const categoryKeys = [...(new Set(data?.map((company: CompanyProps) => company.category)))]
+
+  return { data, categoryKeys, error, isLoading };
 };
 
 export default useFetchCompany;

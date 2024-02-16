@@ -26,11 +26,11 @@ export async function PATCH(req: NextRequest) {
     if (hasVoted) {
       // If the user has already voted, remove the vote (unvote)
       updatedUserIds = updatedUserIds.filter((id) => id !== userId);
-      increment--;
+      increment = increment !== null ? increment - 1 : 0;
     } else {
       // If the user hasn't voted yet, add the vote (upvote)
       updatedUserIds.push(userId);
-      increment++;
+      increment = increment !== null ? increment + 1 : 1;
     }
 
     // Update the company record with the new user votes count
