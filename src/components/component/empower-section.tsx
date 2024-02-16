@@ -1,6 +1,6 @@
 import { CheckIcon } from "lucide-react";
 
-export function EmpowreSection() {
+const EmpowerSection = () => {
   return (
     <div className="mx-auto max-w-4xl py-12">
       <h1 className="mb-8 text-center text-4xl font-bold text-blue-600">
@@ -22,4 +22,6 @@ export function EmpowreSection() {
       </div>
     </div>
   );
-}
+};
+
+export default EmpowerSection;
