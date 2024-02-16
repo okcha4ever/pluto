@@ -1,5 +1,5 @@
 import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
-import { CompanyProps } from "@/types/Card";
+import { type CompanyProps } from "@/types/Card";
 
 export default function Card({ data }: { data: CompanyProps }) {
   return (
