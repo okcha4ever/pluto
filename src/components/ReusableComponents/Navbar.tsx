@@ -1,9 +1,13 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
-import { MenuIcon, MicroscopeIcon } from "lucide-react";
+import { MenuIcon, MicroscopeIcon, UserIcon } from "lucide-react";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 
 export function Navbar() {
+  const session = useSession();
+  console.log(session.data?.user.image);
+
   return (
     <nav className=" bg-[#3b49df] p-4">
       <div className="container mx-auto flex items-center justify-between">
@@ -30,9 +34,14 @@ export function Navbar() {
           <Avatar>
             <AvatarImage
               alt="User avatar"
-              src="/placeholder.svg?height=32&width=32"
+              src={
+                session.data?.user.image ||
+                "/placeholder.svg?height=32&width=32"
+              }
             />
-            <AvatarFallback>U</AvatarFallback>
+            <AvatarFallback>
+              <UserIcon /> {/* Use UserIcon from Lucide as fallback */}
+            </AvatarFallback>
           </Avatar>
           <MenuIcon className="h-6 w-6 text-white" />
         </div>

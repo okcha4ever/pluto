@@ -8,7 +8,8 @@ import { Company } from "@prisma/client";
 
 function Page() {
   const { data, categoryKeys, isLoading, error } = useFetchCompany();
-  console.log(categoryKeys);
+
+   
 
   return (
     <div className="w-min-[100vh]">
