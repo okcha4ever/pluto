@@ -24,6 +24,7 @@ model Company {
     ceoId       String
     category    String
     upvotes     String[]
+    increment   Int?         @default(0)
     description String
     ceo         User        @relation(fields: [ceoId], references: [id], onDelete: Cascade)
     type        CompanyType

@@ -3,7 +3,7 @@ import { Navbar } from "@/components/ReusableComponents/Navbar";
 import { Button } from "@/components/ui/button";
 import Card from "../../components/ReusableComponents/Card";
 import { Footer } from "@/components/ReusableComponents/Footer";
-import { CompanyProps } from "@/types/Card";
+import { CompanyProps } from "@/types/CompanyProps";
 import useFetchCompany from "@/hooks/useFetchCompany";
 
 function page() {

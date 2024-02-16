@@ -2,9 +2,10 @@ interface CompanyProps {
   id: number;
   name: string;
   description: string;
-  type: "Founder" | "Inverstor" | "None";
+  type: String;
   category: String;
   ceoId: String;
+  increment?: number;
 }
 
 export type { CompanyProps };

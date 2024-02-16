@@ -1,4 +1,4 @@
-import { CompanyProps } from "@/types/Card";
+import { CompanyProps } from "@/types/CompanyProps";
 import axios from "axios";
 import { useMutation } from "react-query";
 
