@@ -1,9 +1,9 @@
 import { Contact } from "@/components/component/contact";
 import EmpowerSection from "@/components/component/empower-section";
+import { Footer } from "@/components/component/footer";
 import { Hero } from "@/components/component/hero";
 import { HowItWorks } from "@/components/component/how-it-works-section";
 import { ServicesSection } from "@/components/component/services-section";
-
 
 export default function HomePage() {
   return (
@@ -13,6 +13,7 @@ export default function HomePage() {
       <HowItWorks />
       <ServicesSection />
       <Contact />
+      <Footer />
     </main>
   );
 }
