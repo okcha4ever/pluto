@@ -4,10 +4,12 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Chrome, MenuIcon } from "lucide-react";
 import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export function Hero() {
-  const { data: session } = useSession();
-  console.log(session?.user.occupation);
+  const { status } = useSession();
+  const router = useRouter();
+
   return (
     <section className="bg-[#2c54ea] text-white">
       <div className="absolute right-32 top-[230px] z-0">
@@ -53,7 +55,11 @@ export function Hero() {
           </Link>
         </div>
         <Button
-          onClick={() => signIn("google")}
+          onClick={() =>
+            status === "authenticated"
+              ? router.push("/upvote")
+              : signIn("google")
+          }
           className="hidden rounded-3xl bg-white text-black hover:bg-slate-300 md:block"
         >
           Get Started
@@ -72,7 +78,11 @@ export function Hero() {
         </p>
         <div className="flex justify-center space-x-4">
           <Button
-            onClick={() => signIn("google")}
+            onClick={() =>
+              status === "authenticated"
+                ? router.push("/upvote")
+                : signIn("google")
+            }
             className="flex items-center space-x-2 rounded-3xl bg-white text-[#2c54ea] hover:bg-slate-300"
           >
             <Chrome className="h-4 w-4" />

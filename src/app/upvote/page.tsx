@@ -6,7 +6,7 @@ import { Footer } from "@/components/ReusableComponents/Footer";
 import { CompanyProps } from "@/types/CompanyProps";
 import useFetchCompany from "@/hooks/useFetchCompany";
 
-function page() {
+function Page() {
   const { data, isLoading, error } = useFetchCompany();
 
   console.log(data, isLoading, error);
@@ -37,4 +37,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
