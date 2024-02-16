@@ -1,5 +1,6 @@
 import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
 import { Company } from "@prisma/client";
+import Image from "next/image";
 
 export default function Card({ data }: { data: Company }) {
   return (
@@ -18,6 +19,15 @@ export default function Card({ data }: { data: Company }) {
               {(data as { name: string }).name}
             </p>
             <p className="text-xs text-gray-500">{data.description}</p>
+          </div>
+          <div className="flex flex-col items-center justify-center">
+            <Image
+              src="/assets/arrow-up.svg"
+              height={24}
+              width={24}
+              alt="Arrow vote"
+            />
+            7
           </div>
         </div>
       )}

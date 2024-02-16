@@ -1,7 +1,8 @@
 import { db } from "@/server/db";
+import { getSession } from "next-auth/react";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest) {
+export async function GET(req: NextRequest, res: NextResponse) {
   try {
     const { searchParams } = new URL(req.url);
     const category = searchParams.get("category");
