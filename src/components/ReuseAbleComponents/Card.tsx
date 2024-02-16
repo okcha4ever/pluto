@@ -4,7 +4,6 @@ import { CompanyProps } from "@/types/Card";
 export default function Card({ data }: { data: CompanyProps }) {
   return (
     <div className=" mx-auto my-10 rounded-lg border bg-white p-4 shadow-md">
-      {/* Check if dataData is available before rendering */}
       {data && (
         <div className="flex w-full">
           <Avatar>

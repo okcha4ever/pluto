@@ -1,3 +1,4 @@
+import MyReactQueryProvider from "@/providers/MyReactQueryProvider";
 import MySessionProvider from "@/providers/MySessionProvider";
 import "@/styles/globals.css";
 import type { Session } from "next-auth";
@@ -23,10 +24,12 @@ export default function RootLayout({
   params: { session: Session };
 }) {
   return (
-    <MySessionProvider session={params.session}>
-      <html lang="en">
-        <body className={`font-sans ${inter.variable}`}>{children}</body>
-      </html>
-    </MySessionProvider>
+    <MyReactQueryProvider>
+      <MySessionProvider session={params.session}>
+        <html lang="en">
+          <body className={`font-sans ${inter.variable}`}>{children}</body>
+        </html>
+      </MySessionProvider>
+    </MyReactQueryProvider>
   );
 }

@@ -5,7 +5,8 @@ export async function GET() {
   try {
     const companies = await db.company.findMany();
     return NextResponse.json(companies, { status: 200 });
-  } catch {
+  } catch(error) {
+    console.error(error);
     return NextResponse.json("something went wrong", { status: 500 });
   }
 }

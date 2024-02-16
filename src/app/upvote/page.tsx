@@ -1,29 +1,15 @@
-import { Navbar } from "@/components/ReuseAbleComponents/navbar";
+"use client";
+import { Navbar } from "@/components/ReuseAbleComponents/Navbar";
 import { Button } from "@/components/ui/button";
 import Card from "../../components/ReuseAbleComponents/Card";
 import { Footer } from "@/components/ReuseAbleComponents/Footer";
 import { CompanyProps } from "@/types/Card";
+import useFetchCompany from "@/hooks/useFetchCompany";
 
 function page() {
-  const dataCards: CompanyProps[] = [
-    {
-      id: 1,
-      name: "Trello",
-      description:
-        "Trello lets you work more collaboratively and get more done.",
-    },
-    {
-      id: 2,
-      name: "Slack",
-      description: "Slack is a new way to communicate with your team.",
-    },
-    {
-      id: 3,
-      name: "Zoom",
-      description:
-        "Zoom is the leader in modern enterprise video communications.",
-    },
-  ];
+  const { data, isLoading, error } = useFetchCompany();
+
+  console.log(data, isLoading, error);
 
   return (
     <div>
@@ -42,8 +28,8 @@ function page() {
           </div>
         </div>
       </div>
-      {dataCards &&
-        dataCards.map((company: CompanyProps, i) => (
+      {data &&
+        data.map((company: CompanyProps, i: number) => (
           <Card key={i} data={company as CompanyProps} />
         ))}
       <Footer />
