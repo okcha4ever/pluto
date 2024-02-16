@@ -3,7 +3,7 @@ import { Navbar } from "@/components/ReusableComponents/Navbar";
 import { Button } from "@/components/ui/button";
 import Card from "../../components/ReusableComponents/Card";
 import { Footer } from "@/components/ReusableComponents/Footer";
-import useFetchCompany from "@/hooks/useFetchCompany";
+import useFetchCompany from "@/hooks/companyHooks/useFetchCompany";
 import { Company } from "@prisma/client";
 
 function Page() {

@@ -2,10 +2,10 @@ import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
 import { Company } from "@prisma/client";
 import Image from "next/image";
 import { Button } from "../ui/button";
-import useUpvote from "@/hooks/useUpvote";
+import useUpvote from "@/hooks/upvoteHooks/useUpvote";
 import { useSession } from "next-auth/react";
 import { ArrowUpSquareIcon } from "lucide-react";
-import useFetchCompany from "@/hooks/useFetchCompany";
+import useFetchCompany from "@/hooks/companyHooks/useFetchCompany";
 import Link from "next/link";
 
 export default function Card({ data }: { data: Company }) {

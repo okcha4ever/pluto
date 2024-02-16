@@ -10,11 +10,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import useFetchCompany from "@/hooks/useFetchCompany";
+import useFetchCompany from "@/hooks/companyHooks/useFetchCompany";
 
 function page() {
- const { data, error, isLoading } = useFetchCompany();
-    console.log(data);
+  const { data, error, isLoading } = useFetchCompany();
+
   return (
     <>
       <Navbar />
@@ -34,7 +34,7 @@ function page() {
                     </Avatar>
                     <div className="ml-5">
                       <h2 className="text-2xl font-bold leading-7 text-[#2c54ea] sm:truncate sm:text-3xl">
-                     {""} {data[0].ceo.name}
+                        {""} {data[0].ceo.name}
                       </h2>
                     </div>
                   </div>

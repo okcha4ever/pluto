@@ -2,7 +2,7 @@ import { WifiIcon } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-[#2c54ea] p-10 text-white">
+    <footer className="relative bottom-0 bg-[#2c54ea] p-10 text-white">
       <div className="container mx-auto grid grid-cols-2 gap-8 sm:grid-cols-1 lg:grid-cols-4">
         <div>
           <h2 className="mb-2 text-4xl font-bold">Pluto</h2>
