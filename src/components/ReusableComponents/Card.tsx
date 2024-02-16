@@ -1,10 +1,9 @@
 import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
-import { type CompanyProps } from "@/types/CompanyProps";
 import { Company } from "@prisma/client";
 
 export default function Card({ data }: { data: Company }) {
   return (
-    <div className=" mx-auto my-10 rounded-lg border bg-white p-4 shadow-md">
+    <div className=" mx-auto my-10 max-w-4xl rounded-lg border bg-white p-4 shadow-md ">
       {data && (
         <div className="flex w-full">
           <Avatar>

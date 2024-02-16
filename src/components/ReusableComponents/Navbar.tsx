@@ -5,9 +5,9 @@ import Image from "next/image";
 
 export function Navbar() {
   return (
-    <nav className="bg-[#3b49df] p-4">
+    <nav className=" bg-[#3b49df] p-4">
       <div className="container mx-auto flex items-center justify-between">
-        <div className="flex items-center">
+        <a className="flex items-center" href="/">
           <Image
             src="/assets/logo.png"
             alt="Pluto"
@@ -15,7 +15,7 @@ export function Navbar() {
             height={100}
             layout="fixed"
           />{" "}
-        </div>
+        </a>
         <div className="mx-4 flex-1">
           <div className="relative">
             <Input

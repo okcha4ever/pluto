@@ -41,16 +41,16 @@ export function Hero() {
           </span>
         </div>
         <div className="hidden space-x-6 md:flex">
-          <Link className="hover:underline" href="#">
+          <Link className="hover:underline" href="/">
             Home
           </Link>
-          <Link className="hover:underline" href="#">
+          <Link className="hover:underline" href="#service">
             Service
           </Link>
-          <Link className="hover:underline" href="#">
-            Invest
+          <Link className="hover:underline" href="/upvote">
+            Upvote
           </Link>
-          <Link className="hover:underline" href="#">
+          <Link className="hover:underline" href="#contact">
             Contact
           </Link>
         </div>

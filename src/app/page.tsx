@@ -7,7 +7,7 @@ import { ServicesSection } from "@/components/ReusableComponents/ServiceSection"
 
 export default function HomePage() {
   return (
-    <main>
+    <main className="">
       <Hero />
       <EmpowerSection />
       <HowItWorks />

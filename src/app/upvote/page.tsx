@@ -12,7 +12,7 @@ function Page() {
   console.log(data, isLoading, error);
 
   return (
-    <div>
+    <div className="w-min-[100vh]">
       <Navbar />
       <div className="mx-auto max-w-4xl px-4 py-8">
         <h1 className="mb-4 text-5xl font-bold tracking-tight text-blue-600">
@@ -22,14 +22,20 @@ function Page() {
         <div className="mt-4">
           <span className="text-lg font-semibold">Categories:</span>
           <div className="mt-2 flex space-x-2">
-            <Button className="bg-gray-200 text-gray-700">Technologies</Button>
-            <Button className="bg-gray-200 text-gray-700">Productivity</Button>
-            <Button className="bg-blue-200 text-blue-700">SaaS</Button>
+            <Button className="bg-gray-200 text-gray-700 hover:text-white">
+              Technologies
+            </Button>
+            <Button className="bg-gray-200 text-gray-700 hover:text-white">
+              Productivity
+            </Button>
+            <Button className="bg-gray-200 text-gray-700 hover:text-white">
+              SaaS
+            </Button>
           </div>
         </div>
       </div>
       {data &&
-        data.map((company, i: number) => (
+        data.map((company: Company, i: number) => (
           <Card key={i} data={company as Company} />
         ))}
       <Footer />

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 export function Contact() {
   return (
-    <section className="bg-[#e6e7ff] py-12">
+    <section id="contact" className="bg-[#e6e7ff] py-12">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col justify-between rounded-2xl bg-white p-8 shadow-lg sm:items-center sm:justify-start sm:p-12 md:flex-row">
           <div className="mb-4 sm:mb-0 sm:flex sm:flex-col">
