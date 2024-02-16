@@ -1,16 +1,19 @@
 import axios from "axios";
 import { useMutation } from "react-query";
-
-function useUpvote(id: string) {
+import { queryClient } from "@/providers/MyReactQueryProvider"
+function useUpvote(id: string, userId: string) {
   const handleUpvote = async () => {
-    const { data } = await axios.post(`/api/company/update?id=${id}}`);
+    const { data } = await axios.patch(`/api/company/update?id=${id}`, {
+      userId,
+    });
     return data;
   };
 
   const { data, error, isLoading, mutateAsync } = useMutation({
     mutationFn: handleUpvote,
     onSuccess: () => {
-      console.log("Upvoted successfully");
+      console.log("Upvoted successfully")
+      queryClient.invalidateQueries("company");
     },
   });
 

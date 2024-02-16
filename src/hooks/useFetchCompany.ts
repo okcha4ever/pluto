@@ -2,10 +2,14 @@ import { CompanyProps } from "@/types/CompanyProps";
 import axios from "axios";
 import { useQuery } from "react-query";
 
-const useFetchCompany = () => {
+const useFetchCompany = (id?: string) => {
   const fetchCompany = async () => {
-    const { data } = await axios.get("/api/company");
-    return data.companies;
+    if (id) {
+      const { data } = await axios.get(`/api/company?id=${id}`);
+      return data;
+    }
+    const { data } = await axios.get(`/api/company`);
+    return data;
   };
 
   const { data, error, isLoading } = useQuery({
@@ -13,7 +17,9 @@ const useFetchCompany = () => {
     queryFn: fetchCompany,
   });
 
-  const categoryKeys = [...(new Set(data?.map((company: CompanyProps) => company.category)))]
+  const categoryKeys = [
+    ...new Set(data?.map((company: CompanyProps) => company.category)),
+  ];
 
   return { data, categoryKeys, error, isLoading };
 };
