@@ -9,8 +9,6 @@ import { Company } from "@prisma/client";
 function Page() {
   const { data, categoryKeys, isLoading, error } = useFetchCompany();
 
-   
-
   return (
     <div className="w-min-[100vh]">
       <Navbar />
@@ -39,10 +37,9 @@ function Page() {
           )}
         </div>
       </div>
-      {data &&
-        data.map((company: Company, i: number) => (
-          <Card key={i} data={company as Company} />
-        ))}
+      {data?.map((company: Company, i: number) => (
+        <Card key={i} data={company as Company} />
+      ))}
       <Footer />
     </div>
   );
