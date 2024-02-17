@@ -8,32 +8,31 @@ datasource db {
 }
 
 model Company {
-  id          String    @id @default(nanoid())
-  name        String
-  ceoId       String
-  category    String
-  upvotes     String[]
-  increment   Int?      @default(0)
-  description String
-  type        String
-  Comment     Comment[]
-  ceo         User      @relation(fields: [ceoId], references: [id], onDelete: Cascade)
+    id          String      @id @default(nanoid())
+    name        String
+    ceoId       String
+    category    String
+    upvotes     String[]
+    increment   Int?         @default(0)
+    description String
+    ceo         User        @relation(fields: [ceoId], references: [id], onDelete: Cascade)
+    type        String
 }
 
 model Account {
-  id                String  @id @default(cuid())
-  userId            String
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String?
-  access_token      String?
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String?
-  session_state     String?
-  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+    id                String  @id @default(cuid())
+    userId            String
+    type              String
+    provider          String
+    providerAccountId String
+    refresh_token     String? // @db.Text
+    access_token      String? // @db.Text
+    expires_at        Int?
+    token_type        String?
+    scope             String?
+    id_token          String? // @db.Text
+    session_state     String?
+    user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
@@ -47,25 +46,15 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  occupation    String?
-  accounts      Account[]
-  Comment       Comment[]
-  Company       Company[]
-  sessions      Session[]
-}
-
-model Comment {
-  id        String  @id @default(cuid())
-  userId    String  // This line was missing
-  companyId String
-  content   String
-  Company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
-  User      User    @relation(fields: [userId], references: [id])
+    id            String    @id @default(cuid())
+    name          String?
+    email         String?   @unique
+    emailVerified DateTime?
+    image         String?
+    occupation    String?
+    accounts      Account[]
+    sessions      Session[]
+    Company       Company[]
 }
 
 
@@ -75,4 +64,13 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model Comment {
+    id        String  @id @default(nanoid())
+    userId    String
+    user      User    @relation(fields: [userId], references: [id])
+    companyId String
+    company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+    content   String
 }
