@@ -3,7 +3,7 @@ import type { Company } from "@prisma/client";
 import { type NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
-  const { name, ceoId, category, description, type }: Company =
+  const { name, ceoId, category, description, type, image }: Company =
     await request.json();
   try {
     const addedCompany = await db.company.create({
@@ -12,6 +12,7 @@ export async function POST(request: NextRequest) {
         category,
         description,
         type,
+        image,
         ceo: {
           connect: {
             id: ceoId,
