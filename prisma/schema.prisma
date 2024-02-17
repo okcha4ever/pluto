@@ -1,22 +1,23 @@
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
 }
 
 model Company {
-    id          String      @id @default(nanoid())
+    id          String    @id @default(nanoid())
     name        String
     ceoId       String
     category    String
     upvotes     String[]
-    increment   Int?         @default(0)
+    increment   Int?      @default(0)
     description String
-    ceo         User        @relation(fields: [ceoId], references: [id], onDelete: Cascade)
+    ceo         User      @relation(fields: [ceoId], references: [id], onDelete: Cascade)
     type        String
+    Comment     Comment[]
 }
 
 model Account {
@@ -34,15 +35,15 @@ model Account {
     session_state     String?
     user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([provider, providerAccountId])
+    @@unique([provider, providerAccountId])
 }
 
 model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique
-  expires      DateTime
-  userId       String
-  user         User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+    id           String   @id @default(cuid())
+    sessionToken String   @unique
+    expires      DateTime
+    userId       String
+    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model User {
@@ -54,9 +55,9 @@ model User {
     occupation    String?
     accounts      Account[]
     sessions      Session[]
-    Company       Company[]
+    companies     Company[]
+    comments      Comment[]
 }
-
 
 model VerificationToken {
     identifier String
