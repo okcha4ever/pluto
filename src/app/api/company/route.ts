@@ -7,13 +7,28 @@ export async function GET(req: NextRequest, res: NextResponse) {
     const { searchParams } = new URL(req.url);
     const id = searchParams.get("id");
 
-    const companies = await db.company.findMany({
-      ...(id !== "undefined" && id !== null && { where: { id } }),
-      orderBy: { upvotes: "desc" },
-      include:{
-        ceo: true
-      }
-    });
+    let companies = [];
+    if (id) {
+      companies = await db.company.findMany({
+        where: { id },
+        orderBy: {
+          upvotes: "desc",
+        },
+        include: {
+          ceo: true,
+        },
+      });
+    } else {
+      companies = await db.company.findMany({
+        where: {},
+        orderBy: {
+          upvotes: "desc",
+        },
+        include: {
+          ceo: true,
+        },
+      });
+    }
 
     return NextResponse.json(companies, { status: 200 });
   } catch (error) {

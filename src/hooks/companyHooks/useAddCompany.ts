@@ -11,7 +11,6 @@ const useAddCompany = (postData: CompanyProps) => {
   const { data, error, isLoading, mutateAsync } = useMutation({
     mutationFn: addCompany,
     onSuccess: () => {
-      console.log("Company added successfully");
     },
   });
 

@@ -21,17 +21,22 @@ function Page() {
           {categoryKeys.length > 0 && (
             <>
               <span className="text-lg font-semibold">Categories:</span>
-              <div className="mt-2 flex space-x-2">
+              <div className="mt-2 flex items-center justify-between space-x-2">
                 {(categoryKeys as string[]).map(
                   (category: string, i: number) => (
-                    <Button
-                      key={i}
-                      className="bg-gray-200 text-gray-700 hover:text-white"
-                    >
-                      {category}
-                    </Button>
+                    <>
+                      <Button
+                        key={i}
+                        className="bg-gray-200 text-gray-700 hover:text-white"
+                      >
+                        {category}
+                      </Button>
+                    </>
                   ),
                 )}
+                <Button className="bg-[#2c54ea]" type="submit">
+                  Publish
+                </Button>
               </div>
             </>
           )}

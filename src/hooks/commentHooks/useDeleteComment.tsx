@@ -9,7 +9,6 @@ export const useDeleteComment = () => {
   const { data, error, isLoading, mutateAsync } = useMutation({
     mutationFn: handleDeleteComment,
     onSuccess: () => {
-      console.log("Comment deleted successfully");
     },
   });
   return { data, error, isLoading, mutateAsync };

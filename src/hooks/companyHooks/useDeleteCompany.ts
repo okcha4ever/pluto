@@ -10,7 +10,6 @@ const useDeleteCompany = async (id: string) => {
   const { data, error, isLoading, mutateAsync } = useMutation({
     mutationFn: handleData,
     onSuccess: () => {
-      console.log("Company deleted successfully");
     },
   });
 

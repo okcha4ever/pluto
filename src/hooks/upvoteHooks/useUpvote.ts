@@ -12,7 +12,6 @@ function useUpvote(id: string, userId: string) {
   const { data, error, isLoading, mutateAsync } = useMutation({
     mutationFn: handleUpvote,
     onSuccess: () => {
-      console.log("Upvoted successfully")
       queryClient.invalidateQueries("company");
     },
   });

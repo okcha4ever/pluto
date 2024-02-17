@@ -4,17 +4,37 @@ import { Navbar } from "@/components/ReusableComponents/Navbar";
 import { Footer } from "@/components/ReusableComponents/Footer";
 import useFetchCompany from "@/hooks/companyHooks/useFetchCompany";
 import { InputForm } from "@/components/Input";
+import useFetchComments from "@/hooks/commentHooks/useFetchComments";
+import CommentItem from "@/components/ReusableComponents/Comment";
+import { Comment } from "@prisma/client";
+import UpvoteButton from "@/components/UpvoteButton";
+import { useSession } from "next-auth/react";
 
+interface CommentWithUser extends Comment {
+  User: {
+    name: string;
+    image: string;
+  };
+}
 
 function page({ params }: { params: { id: string } }) {
-  const { data, error, isLoading } = useFetchCompany(params.id);
-  console.log(data);
+  const { data: session } = useSession();
+  const { data } = useFetchCompany(params.id);
+  const {
+    data: comments,
+    error: commentError,
+    isLoading: commentLoading,
+  } = useFetchComments(params.id) as {
+    data: CommentWithUser[];
+    error: any;
+    isLoading: boolean;
+  };
 
   return (
     <>
       <Navbar />
-      <div className="min-h-[100vh]">
-        {data && data.length > 0 && (
+      <div className="min-h-screen">
+        {data && data.length > 0 ? (
           <div className="min-h-screen bg-gray-100 p-16">
             <div className="mx-auto max-w-6xl">
               <h1 className="mb-6 p-5 text-4xl font-bold text-[#3B49DF]">
@@ -22,31 +42,35 @@ function page({ params }: { params: { id: string } }) {
               </h1>
               <div className="grid gap-6 md:grid-cols-3">
                 <div className="rounded-lg bg-white p-6 shadow-md md:col-span-2">
-                  <div className="mb-4 flex items-center justify-start space-x-4">
-                    <Avatar>
-                      <AvatarImage
-                        alt="Profile picture"
-                        src={data[0].ceo.image}
-                      />
-                      <AvatarFallback>AN</AvatarFallback>
-                    </Avatar>
-                    <p>{data[0].name}</p>
-                  </div>
-
                   <div className="flex">
                     <p>{data[0].description}</p>
+                    <div className="p-4">
+                      {" "}
+                      <UpvoteButton
+                        data={data[0]}
+                        uid={session?.user.id ?? ""}
+                      />
+                    </div>
                   </div>
 
-                  <div className="space-y-2"></div>
                   <h2 className="mb-4 mt-6 text-xl font-semibold text-blue-800">
                     Comments:
                   </h2>
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between rounded-lg bg-gray-200 p-4"></div>
+                    {comments?.map((comment: CommentWithUser, i: number) => (
+                      <CommentItem
+                        key={i}
+                        content={comment.content}
+                        user={{
+                          name: comment.User.name,
+                          image: comment.User.image,
+                        }}
+                      />
+                    ))}
                   </div>
 
                   <div className="mt-5">
-                    <InputForm />
+                    <InputForm companyId={params.id} />
                   </div>
                 </div>
                 <div className="rounded-lg bg-white p-6 shadow-md">
@@ -66,9 +90,13 @@ function page({ params }: { params: { id: string } }) {
               </div>
             </div>
           </div>
+        ) : (
+          <div className="relative bottom-0 min-h-screen"></div>
         )}
-        
-        <Footer />
+
+        <div className="relative bottom-0">
+          <Footer />
+        </div>
       </div>
     </>
   );
