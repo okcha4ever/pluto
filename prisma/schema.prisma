@@ -1,24 +1,22 @@
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
 }
 
 model Company {
-  id          String    @id @default(nanoid())
-  name        String
-  ceoId       String
-  category    String
-  upvotes     String[]
-  increment   Int?      @default(0)
-  description String
-  type        String
-  Comment     Comment[]
-  image       String?
-  ceo         User      @relation(fields: [ceoId], references: [id], onDelete: Cascade)
+    id          String      @id @default(nanoid())
+    name        String
+    ceoId       String
+    category    String
+    upvotes     String[]
+    increment   Int?         @default(0)
+    description String
+    ceo         User        @relation(fields: [ceoId], references: [id], onDelete: Cascade)
+    type        String
 }
 
 model Account {
@@ -36,39 +34,28 @@ model Account {
   session_state     String?
   user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([provider, providerAccountId])
+    @@unique([provider, providerAccountId])
 }
 
 model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique
-  expires      DateTime
-  userId       String
-  user         User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+    id           String   @id @default(cuid())
+    sessionToken String   @unique
+    expires      DateTime
+    userId       String
+    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  occupation    String?
-  accounts      Account[]
-  Comment       Comment[]
-  Company       Company[]
-  sessions      Session[]
+    id            String    @id @default(cuid())
+    name          String?
+    email         String?   @unique
+    emailVerified DateTime?
+    image         String?
+    occupation    String?
+    accounts      Account[]
+    sessions      Session[]
+    Company       Company[]
 }
-
-model Comment {
-  id        String  @id @default(cuid())
-  userId    String  // This line was missing
-  companyId String
-  content   String
-  Company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
-  User      User    @relation(fields: [userId], references: [id])
-}
-
 
 model VerificationToken {
     identifier String
