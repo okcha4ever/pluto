@@ -18,4 +18,4 @@ Then create a .env file where the .env.example file is + following its example.
 ## START
 Run : “npm run db:push” then “npm run dev” and you are set
 
-By GDG Batna
+ By GDG Batna
