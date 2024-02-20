@@ -1,10 +1,12 @@
 import { db } from "@/server/db";
-import { NextRequest, NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
 export async function DELETE(request: NextRequest) {
-  const { companyId } = await request.json();
+  const { companyId } = await request.json() as { companyId: string };
+  
+  
   try {
-
     await db.comment.delete({
       where: {
         id: companyId,

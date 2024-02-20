@@ -2,10 +2,11 @@ interface CompanyProps {
   id: number;
   name: string;
   description: string;
-  type: String;
-  category: String;
-  ceoId: String;
+  type: string;
+  category: string;
+  ceoId: string;
   increment?: number;
+  image: string;
 }
 
 export type { CompanyProps };

@@ -3,12 +3,12 @@ import { Navbar } from "@/components/ReusableComponents/Navbar";
 import { Button } from "@/components/ui/button";
 import Card from "../../components/ReusableComponents/Card";
 import { Footer } from "@/components/ReusableComponents/Footer";
-import useFetchCompany from "@/hooks/companyHooks/useFetchCompany";
-import { Company } from "@prisma/client";
+import UseFetchCompany from "@/hooks/companyHooks/UseFetchCompany";
+import { type Company } from "@prisma/client";
 import Link from "next/link";
 
 function Page() {
-  const { data, categoryKeys, isLoading, error } = useFetchCompany();
+  const { data, categoryKeys, isLoading, error } = UseFetchCompany();
 
   return (
     <div className="w-min-[100vh]">
@@ -45,7 +45,7 @@ function Page() {
         </div>
       </div>
       {data?.map((company: Company, i: number) => (
-        <Card key={i} data={company as Company} />
+        <Card key={i} data={company} />
       ))}
       <Footer />
     </div>

@@ -1,11 +1,12 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { db } from "@/server/db";
+import type { Company } from "@prisma/client";
 
 export async function PATCH(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const id = searchParams.get("id");
 
-  const { userId } = await req.json();
+  const { ceoId: userId } = (await req.json()) as Company;
 
   try {
     if (!id || !userId)

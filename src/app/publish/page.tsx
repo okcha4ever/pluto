@@ -6,11 +6,11 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Upload from "@/components/ReusableComponents/Upload";
-import useAddCompany from "@/hooks/companyHooks/useAddCompany";
-import { CompanyProps } from "@/types/CompanyProps";
+import UseAddCompany from "@/hooks/companyHooks/useAddCompany";
+import type { CompanyProps } from "@/types/CompanyProps";
 
 interface Inputs extends Omit<CompanyProps, "id"> {
-  image: any;
+  image: string;
 }
 
 export default function Page() {
@@ -21,7 +21,6 @@ export default function Page() {
     register,
     handleSubmit,
     setValue,
-    formState: { errors },
   } = useForm<Inputs>();
 
   useEffect(() => {
@@ -38,16 +37,17 @@ export default function Page() {
 
   const onSubmit = async (data: Inputs) => {
     const companyData: CompanyProps = {
+      id: 0,
       name: data.name,
       description: data.description,
       type: data.type,
       category: data.category,
       ceoId: data.ceoId,
-      image: imageData ? imageData : "",
+      image: imageData && imageData,
     };
 
     try {
-       useAddCompany(companyData);
+       UseAddCompany(companyData);
 
       router.push("/upvote");
     } catch (error) {

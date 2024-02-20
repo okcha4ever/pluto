@@ -2,11 +2,11 @@
 import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
 import { Navbar } from "@/components/ReusableComponents/Navbar";
 import { Footer } from "@/components/ReusableComponents/Footer";
-import useFetchCompany from "@/hooks/companyHooks/useFetchCompany";
+import UseFetchCompany from "@/hooks/companyHooks/UseFetchCompany";
 import { InputForm } from "@/components/Input";
 import useFetchComments from "@/hooks/commentHooks/useFetchComments";
 import CommentItem from "@/components/ReusableComponents/Comment";
-import { Comment } from "@prisma/client";
+import { type Comment } from "@prisma/client";
 import UpvoteButton from "@/components/UpvoteButton";
 import { useSession } from "next-auth/react";
 
@@ -19,7 +19,7 @@ interface CommentWithUser extends Comment {
 
 function page({ params }: { params: { id: string } }) {
   const { data: session } = useSession();
-  const { data } = useFetchCompany(params.id);
+  const { data } = UseFetchCompany(params.id);
   const {
     data: comments,
     error: commentError,

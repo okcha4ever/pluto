@@ -1,8 +1,8 @@
-import { CompanyProps } from "@/types/CompanyProps";
+import { type CompanyProps } from "@/types/CompanyProps";
 import axios from "axios";
 import { useQuery } from "react-query";
 
-const useFetchCompany = (id?: string) => {
+const UseFetchCompany = (id?: string) => {
   const fetchCompany = async () => {
     if (id) {
       const { data } = await axios.get(`/api/company?id=${id}`);
@@ -24,4 +24,4 @@ const useFetchCompany = (id?: string) => {
   return { data, categoryKeys, error, isLoading };
 };
 
-export default useFetchCompany;
+export default UseFetchCompany;

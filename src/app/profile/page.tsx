@@ -2,10 +2,11 @@
 import { Footer } from "@/components/ReusableComponents/Footer";
 import { Navbar } from "@/components/ReusableComponents/Navbar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import useFetchCompany from "@/hooks/companyHooks/useFetchCompany";
+import UseFetchCompany from "@/hooks/companyHooks/useFetchCompany";
+import type { Company } from "@prisma/client";
 
 function page() {
-  const { data } = useFetchCompany();
+  const { data }: { data: Company[] } = UseFetchCompany();
 
   return (
     <>
@@ -20,7 +21,7 @@ function page() {
                     <Avatar>
                       <AvatarImage
                         alt="Profile picture"
-                        src={data[0].ceo.image}
+                        src={data[0].ceo}
                       />
                       <AvatarFallback>TC</AvatarFallback>
                     </Avatar>
