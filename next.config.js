@@ -5,6 +5,11 @@
 await import("./src/env.js");
 
 /** @type {import("next").NextConfig} */
-const config = {};
+const config = {
+    //image hostname config
+    images: {
+        domains: ["lh3.googleusercontent.com", "res.cloudinary.com", "www.datocms-assets.com"],
+    },
+};
 
 export default config;

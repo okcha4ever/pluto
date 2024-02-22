@@ -17,6 +17,8 @@ model Company {
     description String
     ceo         User        @relation(fields: [ceoId], references: [id], onDelete: Cascade)
     type        String
+    Comments    Comment[]
+    image       String
 }
 
 model Account {
@@ -55,6 +57,16 @@ model User {
     accounts      Account[]
     sessions      Session[]
     Company       Company[]
+    Comments       Comment[]
+}
+
+model Comment {
+    id        String   @id @default(cuid())
+    content   String
+    userId    String
+    companyId String
+    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    company   Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
 }
 
 model VerificationToken {

@@ -1,3 +1,4 @@
+import type{ Comment } from "@prisma/client";
 import axios from "axios";
 import { useMutation } from "react-query";
 
@@ -11,16 +12,18 @@ export const useAddComment = () => {
     userId: string;
     content: string;
   }) => {
-    const { data } = await axios.post(`/api/comment/add?id=${companyId}`, {
-      companyId,
-      userId,
-      content,
-    });
+    const { data }: { data: Comment } = await axios.post(
+      `/api/comment/add?id=${companyId}`,
+      {
+        companyId,
+        userId,
+        content,
+      },
+    );
     return data;
   };
 
   return useMutation(handleAddComment, {
-    onSuccess: () => {
-    },
+    //onSuccess: () => {},
   });
 };

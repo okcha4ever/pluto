@@ -30,7 +30,6 @@ export function Navbar() {
             alt="Pluto"
             width={100}
             height={100}
-            layout="fixed"
           />{" "}
         </a>
         <div className="mx-4 flex-1">

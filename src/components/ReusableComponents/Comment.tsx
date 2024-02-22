@@ -1,6 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
-import { Trash2 } from "lucide-react";
-import { useState } from "react";
+import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 
 export default function CommentItem({
   content,
@@ -28,6 +26,3 @@ export default function CommentItem({
     </div>
   );
 }
-
-
-

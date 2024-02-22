@@ -1,10 +1,12 @@
-import { CompanyProps } from "@/types/CompanyProps";
+import type { Comment } from "@prisma/client";
 import axios from "axios";
 import { useQuery } from "react-query";
 
 const useFetchComments = (id: string) => {
   const fetchComments = async () => {
-    const { data } = await axios.get(`/api/comment?id=${id}`);
+    const { data }: { data: Comment } = await axios.get(
+      `/api/comment?id=${id}`,
+    );
     return data;
   };
 

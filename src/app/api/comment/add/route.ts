@@ -1,6 +1,5 @@
 import { db } from "@/server/db";
 import type { NextRequest } from "next/server";
-import type { Comment } from "@prisma/client";
 export async function POST(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
@@ -14,10 +13,12 @@ export async function POST(req: NextRequest) {
         },
       });
 
-      
-    const commentData = await req.json() as Comment;
+    const { userId, content } = (await req.json()) as {
+      userId: string;
+      content: string;
+    };
 
-    if (!commentData?.userId || !commentData?.content)
+    if (!userId || !content)
       return new Response(
         JSON.stringify({ error: "Missing required fields" }),
         {
@@ -27,8 +28,6 @@ export async function POST(req: NextRequest) {
           },
         },
       );
-
-    const { userId, content } = commentData;
 
     const addedComment = await db.comment.create({
       data: {

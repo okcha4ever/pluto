@@ -2,32 +2,33 @@
 import { Footer } from "@/components/ReusableComponents/Footer";
 import { Navbar } from "@/components/ReusableComponents/Navbar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import UseFetchCompany from "@/hooks/companyHooks/useFetchCompany";
-import type { Company } from "@prisma/client";
+import { useSession } from "next-auth/react";
 
-function page() {
-  const { data }: { data: Company[] } = UseFetchCompany();
+function Page() {
+  const { data } = useSession();
 
   return (
     <>
       <Navbar />
       <div className="min-h-screen bg-gray-100 p-8">
-        {data && data.length > 0 && (
+        {data && (
           <div className="container mx-auto max-w-5xl">
             <div className="rounded-lg bg-white p-6 shadow-lg">
               <div className="md:flex md:items-center md:justify-between">
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center">
-                    <Avatar>
-                      <AvatarImage
-                        alt="Profile picture"
-                        src={data[0].ceo}
-                      />
-                      <AvatarFallback>TC</AvatarFallback>
-                    </Avatar>
+                    {data.user?.image && (
+                      <Avatar>
+                        <AvatarImage
+                          alt="Profile picture"
+                          src={data.user.image}
+                        />
+                        <AvatarFallback>TC</AvatarFallback>
+                      </Avatar>
+                    )}
                     <div className="ml-5">
                       <h2 className="text-2xl font-bold leading-7 text-[#2c54ea] sm:truncate sm:text-3xl">
-                        {""} {data[0].ceo.name}
+                        {""} {data.user.name}
                       </h2>
                     </div>
                   </div>
@@ -42,7 +43,7 @@ function page() {
                     About me
                   </h3>
                   <p className="mt-1 text-sm text-gray-600">
-                    {data[0].ceo.name}
+                    {data.user.email}
                     <br />
                     Age: 29
                     <br />
@@ -73,4 +74,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

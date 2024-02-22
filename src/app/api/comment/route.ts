@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
         companyId: id,
       },
       include: {
-        User: true,
+        user: true,
       },
     });
 

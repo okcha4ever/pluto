@@ -1,14 +1,21 @@
-import { type CompanyProps } from "@/types/CompanyProps";
+import type { Company, User } from "@prisma/client";
 import axios from "axios";
 import { useQuery } from "react-query";
 
-const UseFetchCompany = (id?: string) => {
+type ExtendedCompany = Company & {
+  ceo: User;
+};
+
+const useFetchCompany = (id?: string) => {
   const fetchCompany = async () => {
     if (id) {
-      const { data } = await axios.get(`/api/company?id=${id}`);
+      //tried multiple times to fix this but it's not working end up with this messy code
+      const { data }: { data: ExtendedCompany[] } = await axios.get(
+        `/api/company?id=${id}`,
+      );
       return data;
     }
-    const { data } = await axios.get(`/api/company`);
+    const { data }: { data: ExtendedCompany[] } = await axios.get(`/api/company`);
     return data;
   };
 
@@ -17,11 +24,11 @@ const UseFetchCompany = (id?: string) => {
     queryFn: fetchCompany,
   });
 
-  const categoryKeys = [
-    ...new Set(data?.map((company: CompanyProps) => company.category)),
-  ];
+  const categoryKeys = Array.isArray(data)
+    ? [...new Set(data.flatMap((company: Company) => company.category))]
+    : undefined;
 
   return { data, categoryKeys, error, isLoading };
 };
 
-export default UseFetchCompany;
+export default useFetchCompany;

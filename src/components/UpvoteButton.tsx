@@ -1,21 +1,10 @@
 import useUpvote from "@/hooks/upvoteHooks/useUpvote";
-import { type Company } from "@prisma/client";
+import type { Company } from "@prisma/client";
 import { ArrowUpSquareIcon } from "lucide-react";
 import React from "react";
-
-function UpvoteButton({
-  data,
-
-  uid,
-}: {
-  data: Company;
-  uid: string;
-}) {
-  const {
-    mutateAsync,
-    isLoading,
-    data: upvoteData,
-  } = useUpvote(data.id, uid);
+ 
+function UpvoteButton({ data, uid }: { data: Company; uid: string }) {
+  const { mutateAsync } = useUpvote(data.id, uid);
 
   return (
     <button

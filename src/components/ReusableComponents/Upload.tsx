@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import "./Upload.css";
+import Image from "next/image";
 
 interface UploadProps {
   onSelect: (file: string) => void;
@@ -51,7 +52,7 @@ const Upload: React.FC<UploadProps> = ({ onSelect, onRemove }) => {
       />
       {/* Optional: Display the image preview */}
       {base64Url && (
-        <img
+        <Image
           src={base64Url}
           alt="Preview"
           style={{ maxWidth: "100%", marginTop: "10px" }}
