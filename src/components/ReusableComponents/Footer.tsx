@@ -1,5 +1,3 @@
-import { WifiIcon } from "lucide-react";
-
 export function Footer() {
   return (
     <footer className="relative bottom-0 bg-[#2c54ea] p-10 text-white">

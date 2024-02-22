@@ -1,7 +1,8 @@
 import { db } from "@/server/db";
-import { NextRequest, NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
     const id = searchParams.get("id");
@@ -12,7 +13,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
         companyId: id,
       },
       include: {
-        User: true,
+        user: true,
       },
     });
 

@@ -36,7 +36,6 @@ export function Hero() {
               alt="Pluto"
               width={100}
               height={100}
-              layout="fixed"
             />
           </span>
         </div>

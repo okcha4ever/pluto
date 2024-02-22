@@ -2,14 +2,14 @@ import axios from "axios";
 import { useMutation } from "react-query";
 
 export const useDeleteComment = () => {
-  const handleDeleteComment = async (id: string) => {
-    const { data } = await axios.delete(`/api/comment/delete?id=${id}`);
+  const handleDeleteComment = async () => {
+    const { data }: { data: string } =
+      await axios.delete(`/api/comment/delete`);
     return data;
   };
   const { data, error, isLoading, mutateAsync } = useMutation({
     mutationFn: handleDeleteComment,
-    onSuccess: () => {
-    },
+    //onSuccess: () => {},
   });
   return { data, error, isLoading, mutateAsync };
 };

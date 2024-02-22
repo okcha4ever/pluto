@@ -3,8 +3,10 @@ import type { Company } from "@prisma/client";
 import { type NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
-  const { name, ceoId, category, description, type, image }: Company =
-    await request.json();
+  const { name, ceoId, category, description, type, image } =
+    (await request.json()) as Company;
+
+  //upload image to cloudinary
   try {
     const addedCompany = await db.company.create({
       data: {
@@ -13,11 +15,7 @@ export async function POST(request: NextRequest) {
         description,
         type,
         image,
-        ceo: {
-          connect: {
-            id: ceoId,
-          },
-        },
+        ceoId,
       },
     });
     return NextResponse.json(addedCompany, { status: 200 });

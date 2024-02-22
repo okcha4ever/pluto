@@ -5,10 +5,10 @@ export async function PATCH(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const id = searchParams.get("id");
 
-  const { userId } = await req.json();
+  const { userId: ceoId } = (await req.json()) as { userId: string };
 
   try {
-    if (!id || !userId)
+    if (!id || !ceoId)
       return NextResponse.json("Missing required fields", { status: 400 });
 
     const company = await db.company.findUnique({
@@ -21,15 +21,15 @@ export async function PATCH(req: NextRequest) {
     let updatedUserIds = [...company.upvotes];
     let increment = company.increment;
 
-    const hasVoted = updatedUserIds.includes(userId);
+    const hasVoted = updatedUserIds.includes(ceoId);
 
     if (hasVoted) {
       // If the user has already voted, remove the vote (unvote)
-      updatedUserIds = updatedUserIds.filter((id) => id !== userId);
+      updatedUserIds = updatedUserIds.filter((id) => id !== ceoId);
       increment = increment !== null ? increment - 1 : 0;
     } else {
       // If the user hasn't voted yet, add the vote (upvote)
-      updatedUserIds.push(userId);
+      updatedUserIds.push(ceoId);
       increment = increment !== null ? increment + 1 : 1;
     }
 
